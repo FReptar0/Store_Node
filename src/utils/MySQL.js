@@ -21,7 +21,7 @@ const sql = (query, params) => {
             });
         });
     });
-}
+};
 
 
 module.exports = { sql };
