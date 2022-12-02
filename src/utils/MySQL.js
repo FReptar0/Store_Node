@@ -10,11 +10,11 @@ const client = mysql.createPool({
     port: process.env.DB_PORT
 });
 
-const sql = (query, params) => {
+const sql = (sql, params) => {
     return new Promise((resolve, reject) => {
         client.getConnection((err, conn) => {
             if (err) reject(err);
-            conn.sql(query, params, (err, rows) => {
+            conn.query(sql, params, (err, rows) => {
                 if (err) reject(err);
                 conn.release();
                 resolve(rows);

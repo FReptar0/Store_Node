@@ -3,7 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 /* const { personalRouter, userRouter } = require('../modules/controller/routes')
  */
-const { orderRouter } = require('../modules/routes');
+const { orderRouter } = require('../modules/controller/routes');
 const app = express();
 
 app.set("PORT", process.env.PORT || 3000);
