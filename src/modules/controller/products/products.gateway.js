@@ -31,3 +31,5 @@ const remove = async (id) => {
     const query = `DELETE FROM products WHERE id_product=?`;
     await sql(query, [id]);
 }
+
+module.exports = { findAll, findOne, save, update, remove };
