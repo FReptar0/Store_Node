@@ -3,7 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 /* const { personalRouter, userRouter } = require('../modules/controller/routes')
  */
-const { orderRouter } = require('../modules/controller/routes');
+const { orderRouter, productRouter, storeRouter } = require('../modules/controller/routes');
 const app = express();
 
 app.set("PORT", process.env.PORT || 3000);
@@ -19,5 +19,7 @@ app.get('/', (req, res) => {
 app.use('/user', userRouter); */
 //http://localhost:3000/orders
 app.use('/orders', orderRouter);
+app.use('/products', productRouter);
+app.use('/stores', storeRouter);
 
 module.exports = { app }
