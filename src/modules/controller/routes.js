@@ -3,12 +3,11 @@ const { orderRouter } = require('./orders/orders.controller');
 const { storeRouter } = require('./stores/stores.controller');
 const { productRouter } = require('./products/products.controller');
 const { providersRouter } = require('./providers/providers.controller')
-const {} = require('./rol/rol.controller')
+// const { } = require('./rol/rol.controller')
 
 module.exports = {
     orderRouter,
     storeRouter,
     productRouter,
-    providersRouter,
-    
+    providersRouter
 }

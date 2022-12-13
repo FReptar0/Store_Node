@@ -69,11 +69,11 @@ const eliminate = async(req,res=response)=>{
 //constructor para las rutas 
 const providersRouter = Router();
 
-providerRouters.get('/', getAll);
-providerRouters.get('/:id',getById);
-providerRouters.post('/',insert);
-providerRouters.put('/:id',actualize);
-providerRouters.delete('/:id',eliminate);
+providersRouter.get('/', getAll);
+providersRouter.get('/:id',getById);
+providersRouter.post('/',insert);
+providersRouter.put('/:id',actualize);
+providersRouter.delete('/:id',eliminate);
 
 module.exports = {
     providersRouter

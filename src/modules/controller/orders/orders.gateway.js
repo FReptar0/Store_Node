@@ -1,20 +1,20 @@
-const { sql } = require('../../../utils/MySQL');
+const { query } = require('../../../utils/MySQL');
 
 const findAll = async() => {
-    const query = `SELECT * FROM orders 
+    const sql = `SELECT * FROM orders 
     JOIN clients ON orders.id_client=clients.id_client
     JOIN personal ON orders.id_personal=personal.id_personal
     JOIN stores ON orders.id_store=stores.id_store`;
-    return await sql(query, []);
+    return await query(sql, []);
 }
 
 const findOne = async(id) => {
     if(Number.isNaN(id)) throw Error('Invalid id');
-    const query = `SELECT * FROM orders 
+    const sql = `SELECT * FROM orders 
     JOIN clients ON orders.id_client=clients.id_client
     JOIN personal ON orders.id_personal=personal.id_personal
     JOIN stores ON orders.id_store=stores.id_store WHERE id_order=?`;
-    return await sql(query, [id]);
+    return await query(sql, [id]);
 }
 
 const save = async(order) => {
@@ -22,8 +22,8 @@ const save = async(order) => {
     Number.isNaN(order.id_personal) ||
     Number.isNaN(order.id_store) ||
     !order.description) throw Error('Missing fields');
-    const query = `INSERT INTO orders(id_client, id_personal, id_store, description) VALUES(?,?,?,?)`;
-    const {insertedId} = await sql(query, [order.id_client, order.id_personal, order.id_store, order.description]);
+    const sql = `INSERT INTO orders(id_client, id_personal, id_store, description) VALUES(?,?,?,?)`;
+    const {insertedId} = await query(sql, [order.id_client, order.id_personal, order.id_store, order.description]);
     return {...order, id:insertedId};
 }
 
@@ -33,15 +33,15 @@ const update = async(order, id) => {
     Number.isNaN(order.id_store) ||
     !order.description) throw Error('Missing fields');
     if(Number.isNaN(id)) throw Error('Invalid id');
-    const query = `UPDATE orders SET id_client=?, id_personal=?, id_store=?, description=? WHERE id_order=?`;
-    await sql(query, [order.id_client, order.id_personal, order.id_store, order.description, id]);
+    const sql = `UPDATE orders SET id_client=?, id_personal=?, id_store=?, description=? WHERE id_order=?`;
+    await query(sql, [order.id_client, order.id_personal, order.id_store, order.description, id]);
     return {...order, id:id};
 }
 
 const remove = async(id) => {
     if(Number.isNaN(id)) throw Error('Invalid id');
-    const query = `DELETE FROM orders WHERE id_order=?`;
-    await sql(query, [id]);
+    const sql = `DELETE FROM orders WHERE id_order=?`;
+    await query(sql, [id]);
     return {deletedId:id};
 }
 
