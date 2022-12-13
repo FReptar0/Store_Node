@@ -2,7 +2,7 @@ const mysql = require('mysql');
 require('dotenv').config();
 
 const client = mysql.createPool({
-    connectionLimit: 5,
+    connectionLimit: 20,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -10,7 +10,7 @@ const client = mysql.createPool({
     port: process.env.DB_PORT
 });
 
-const sql = (sql, params) => {
+const query = (sql, params) => {
     return new Promise((resolve, reject) => {
         client.getConnection((err, conn) => {
             if (err) reject(err);
@@ -21,7 +21,7 @@ const sql = (sql, params) => {
             });
         });
     });
-};
+}
 
 
-module.exports = { sql };
+module.exports = { query };
