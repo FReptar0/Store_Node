@@ -25,8 +25,8 @@ const getOne = async(req, res=Response) => {
 
 const post = async(req, res=Response) => {
     try{
-        const { id_client, id_personal, id_store } = req.body;
-        const order = await save({id_client, id_personal, id_store});
+        const { id_client, id_personal, id_store, description } = req.body;
+        const order = await save({id_client, id_personal, id_store, description});
         res.status(200).json(order);
     }catch(error){
         console.log(error);
@@ -37,8 +37,8 @@ const post = async(req, res=Response) => {
 const put = async(req, res=Response) => {
     try{
         const { id } = req.params;
-        const { id_client, id_personal, id_store } = req.body;
-        const order = await update({id_client, id_personal, id_store}, id);
+        const { id_client, id_personal, id_store, description } = req.body;
+        const order = await update({id_client, id_personal, id_store, description}, id);
         res.status(200).json(order);
     }catch(error){
         console.log(error);
