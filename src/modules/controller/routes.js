@@ -9,5 +9,6 @@ module.exports = {
     orderRouter,
     storeRouter,
     productRouter,
-    providersRouter
+    providersRouter,
+    
 }
