@@ -8,8 +8,7 @@ const getAll = async (req, res = Response) => {
     res.status(200).json(providers);
   } catch (error) {
     console.log(error);
-    const message = validateError(error);
-    res.status(400).json({ message }); // { message:""}
+    res.status(400).json({error:'error'}); // { message:""}
   }
 };
 
@@ -20,12 +19,11 @@ const getById = async (req, res = Response) => {
     res.status(200).json(provider)
   } catch (error) {
     console.log(error)
-    const message = validateError(error);
-    res.status(400).json({ message });
+    res.status(400).json({ error:'error' });
   }
 }
 
-const insert = async (req, res = response) => {
+const insert = async (req, res = Response) => {
   try {
 
     const { fullname, email, address, city, state, zipcode, country, phone } = req.body;
@@ -33,12 +31,11 @@ const insert = async (req, res = response) => {
     res.status(200).json(provider);
   } catch (error) {
     console.log(error)
-    const message = validateError(error);
-    res.status(400).json({ message });
+    res.status(400).json({ error:'error' });
   }
 }
 
-const actualize = async (req, res = response) => {
+const actualize = async (req, res = Response) => {
   try {
     const { id } = req.params;
     const { fullname, email, address, city, state, zipcode, country, phone } = req.body;
@@ -48,20 +45,18 @@ const actualize = async (req, res = response) => {
     res.status(200).json(provider);
   } catch (error) {
     console.log(error)
-    const message = validateError(error);
-    res.status(400).json({ message });
+    res.status(400).json({ error:'error' });
   }
 }
 
-const eliminate = async (req, res = response) => {
+const eliminate = async (req, res = Response) => {
   try {
     const { id } = req.params;
     const provider = await remove(id);
     res.status(200).json(provider);
   } catch (error) {
     console.log(error)
-    const message = validateError(error);
-    res.status(400).json({ message });
+    res.status(400).json({ error:'error' });
   }
 }
 
