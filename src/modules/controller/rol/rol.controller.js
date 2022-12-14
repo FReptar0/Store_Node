@@ -28,8 +28,8 @@ const getById= async(req,res=Response)=>{
 const insert =async(req,res=response)=>{
   try{
     
-    const {rolname}=req.body;
-    const rol = await save({rolname});
+    const {rol_name}=req.body;
+    const rol = await save({rol_name});
     res.status(200).json(rol);
   }catch(error){
     console.log(error)
@@ -41,9 +41,9 @@ const insert =async(req,res=response)=>{
 const actualize =async(req,res=response)=>{
   try{
     const {id}=req.params;
-    const{rolname}= req.body;
+    const{rol_name}= req.body;
     const rol = await update({
-        rolname
+        rol_name
     },id);
     res.status(200).json(rol);
   }catch(error){
@@ -69,11 +69,11 @@ const eliminate = async(req,res=response)=>{
 //constructor para las rutas 
 const rolRouter = Router();
 
-rolRouters.get('/', getAll);
-rolRouters.get('/:id',getById);
-rolRouters.post('/',insert);
-rolRouters.put('/:id',actualize);
-rolRouters.delete('/:id',eliminate);
+rolRouter.get('/', getAll);
+rolRouter.get('/:id',getById);
+rolRouter.post('/',insert);
+rolRouter.put('/:id',actualize);
+rolRouter.delete('/:id',eliminate);
 
 module.exports = {
     rolRouter
