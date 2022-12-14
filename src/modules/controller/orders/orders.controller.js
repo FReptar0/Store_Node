@@ -1,6 +1,6 @@
 const { Response, Router, application } = require('express');
 // TODO: Crear las funciones para el CRUD de la tabla orders
-const { findAll, findOne, save, update, remove } = require('./orders.gateway.js');
+const { findAll, findOne, save, update, remove } = require('./orders.gateway');
 
 const getAll = async(req, res=Response) => {
     try{

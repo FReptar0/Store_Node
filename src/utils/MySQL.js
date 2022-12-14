@@ -10,7 +10,7 @@ const client = mysql.createPool({
     port: process.env.DB_PORT
 });
 
-const query = (sql, params) => {
+const query = async(sql, params) => {
     return new Promise((resolve, reject) => {
         client.getConnection((err, conn) => {
             if (err) reject(err);
