@@ -5,7 +5,7 @@ const { findAll, findOne, save, update, remove } = require('./products.gateway')
 const getAll = async (req, res = Response) => {
     try {
         const products = await findAll();
-        res.status(200).json({ products });
+        res.status(200).json(products);
     } catch (error) {
         console.log(error);
         res.status(400).json({ error: 'Error to get all' });
