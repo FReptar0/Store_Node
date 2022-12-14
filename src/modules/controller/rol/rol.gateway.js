@@ -1,14 +1,11 @@
-const { query } = require('express')
 const { sql } = require('../../../utils/MySQL');
 
 const findAll = async () => {
-  const query = `SELECT * from ROl`;
-
+  const query = `SELECT * from rol`;
   return await sql(query, []);
 };
 
 const findById = async (id) => {
-  if (!id) throw Error("Missing fields");
   if (Number.isNaN(id)) throw Error("Wrong Type");
   const query = `SELECT * FROM ROL Where ID_ROL=?`;
   return await sql(query, [id]);
@@ -24,7 +21,7 @@ const save = async (rol) => {
   const { insertedId } = await sql(query, [
     rol.rolname
   ]);
-  return { ...rol}
+  return { ...rol, id:insertedId}
 };
 
 const update = async (rol, id) => {
