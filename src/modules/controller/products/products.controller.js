@@ -25,8 +25,8 @@ const getOne = async (req, res = Response) => {
 
 const post = async (req, res = Response) => {
     try {
-        const { name, description, price, stock, id_store } = req.body;
-        const product = await save({ name, description, price, stock, id_store });
+        const { NAME, DESCRIPTION, PRICE, STOCK, ID_STORE } = req.body;
+        const product = await save({ NAME, DESCRIPTION, PRICE, STOCK, ID_STORE });
         res.status(200).json(product);
     } catch (error) {
         console.log(error);
@@ -37,8 +37,8 @@ const post = async (req, res = Response) => {
 const put = async (req, res = Response) => {
     try {
         const { id } = req.params;
-        const { name, description, price, stock, id_store } = req.body;
-        const product = await update({ name, description, price, stock, id_store }, id);
+        const { NAME, DESCRIPTION, PRICE, STOCK } = req.body;
+        const product = await update({ NAME, DESCRIPTION, PRICE, STOCK }, id);
         res.status(200).json(product);
     } catch (error) {
         console.log(error);

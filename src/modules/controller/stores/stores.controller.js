@@ -5,7 +5,7 @@ const { findAll, findOne, save, update, remove } = require('./stores.gateway.js'
 const getAll = async (req, res = Response) => {
     try {
         const stores = await findAll();
-        res.status(200).json( stores );
+        res.status(200).json(stores);
     } catch (error) {
         console.log(error);
         res.status(400).json({ error: 'Error to get all' });
@@ -25,8 +25,8 @@ const getOne = async (req, res = Response) => {
 
 const post = async (req, res = Response) => {
     try {
-        const { name, address, city, state, zipcode, country, phone } = req.body;
-        const store = await save({ name, address, city, state, zipcode, country, phone });
+        const { NAME, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE } = req.body;
+        const store = await save({ NAME, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE });
         res.status(200).json(store);
     } catch (error) {
         console.log(error);
@@ -37,8 +37,8 @@ const post = async (req, res = Response) => {
 const put = async (req, res = Response) => {
     try {
         const { id } = req.params;
-        const { name, address, city, state, zipcode, country, phone } = req.body;
-        const store = await update({ name, address, city, state, zipcode, country, phone }, id);
+        const { NAME, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE } = req.body;
+        const store = await update({ NAME, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE }, id);
         res.status(200).json(store);
     } catch (error) {
         console.log(error);
@@ -53,7 +53,7 @@ const eliminate = async (req, res = Response) => {
         res.status(200).json(store);
     } catch (error) {
         console.log(error);
-        res.status(400).json({ error: 'Error to put one' });
+        res.status(400).json({ error: 'Error to delete one' });
     }
 }
 

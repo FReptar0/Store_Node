@@ -22,8 +22,8 @@ const obtenerProveedores = (data) => {
                     <td>${proveedores.DESCRIPTION}</td>
                     <td>${proveedores.ID_STORE}</td>
                     <td>
-                        <a href="./editStores.html?id=${proveedores.ID_PRODUCT}" class="btn btn-outline-primary btn-sm">Editar</a>
-                        <a href="./indexStores.html?id=${proveedores.ID_PRODUCT}&accion=delete" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        <a href="./editProducts.html?id=${proveedores.ID_PRODUCT}" class="btn btn-outline-primary btn-sm">Editar</a>
+                        <a href="./indexProducts.html?id=${proveedores.ID_PRODUCT}&accion=delete" class="btn btn-outline-danger btn-sm">Eliminar</a>
                     </td>
                 </tr>
                 `;
