@@ -1,17 +1,15 @@
-const { query } = require('express');
-const { sql } = require('../../../utils/MySQL');
+const { query } = require('../../../utils/MySQL');
 
 const findAll = async () => {
-  const query = `SELECT * from PROVIDERS`;
-
-  return await sql(query, []);
+  const sql = `SELECT * from PROVIDERS`;
+  return await query(sql, []);
 };
 
 const findById = async (id) => {
   if (!id) throw Error("Missing fields");
   if (Number.isNaN(id)) throw Error("Wrong Type");
-  const query = `SELECT * FROM PROVIDERS Where ID_PROVIDER=?`;
-  return await sql(query, [id]);
+  const sql = `SELECT * FROM PROVIDERS Where ID_PROVIDER=?;`;
+  return await query(sql, [id]);
 };
 
 const save = async (provider) => {
@@ -26,8 +24,8 @@ const save = async (provider) => {
     !provider.phone
   )
     throw Error("Missing field");
-  const query = `INSERT INTO PROVIDERS (FULLNAME,EMAIL,ADDRESS,CITY,STATE,ZIPCODE,COUNTRY,PHONE) VALUES (?,?,?,?,?,?,?,?)`;
-  const { insertedId } = await sql(query, [
+  const sql = `INSERT INTO PROVIDERS (FULLNAME,EMAIL,ADDRESS,CITY,STATE,ZIPCODE,COUNTRY,PHONE) VALUES (?,?,?,?,?,?,?,?);`;
+  const { insertedId } = await query(sql, [
     provider.fullname,
     provider.email,
     provider.address,
@@ -36,7 +34,6 @@ const save = async (provider) => {
     provider.zipcode,
     provider.country,
     provider.phone
-
   ]);
   return { ...provider}
 };
@@ -54,8 +51,8 @@ const update = async (provider, id) => {
     !provider.country ||
     !provider.phone
 ) throw Error('Missing fields');
-  const query = `UPDATE PROVIDERS SET FULLNAME=?, EMAIL=?,ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?,PHONE=? WHERE ID_PROVIDER=?`;
-  await sql(query,[
+  const sql = `UPDATE PROVIDERS SET FULLNAME=?, EMAIL=?,ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?,PHONE=? WHERE ID_PROVIDER=?;`;
+  await query(sql,[
     provider.fullname,
     provider.email,
     provider.address,
@@ -72,8 +69,8 @@ const update = async (provider, id) => {
 const remove = async(id)=>{
   if(!id) throw Error('Missing fields');
   if(Number.isNaN(id)) throw Error("Wrong Type");
-  const query = 'DELETE FROM PROVIDERS WHERE ID_PROVIDER=?';
-  await sql(query,[id]);
+  const sql = 'DELETE FROM PROVIDERS WHERE ID_PROVIDER=?';
+  await query(sql,[id]);
   return {idDeleted:id} 
 }
 

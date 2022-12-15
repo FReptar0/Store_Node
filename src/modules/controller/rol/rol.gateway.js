@@ -1,4 +1,4 @@
-const { sql } = require('../../../utils/MySQL');
+const { query } = require('../../../utils/MySQL');
 
 const findAll = async () => {
   const query = `SELECT * from rol`;
@@ -7,42 +7,41 @@ const findAll = async () => {
 
 const findById = async (id) => {
   if (Number.isNaN(id)) throw Error("Wrong Type");
-  const query = `SELECT * FROM ROL Where ID_ROL=?`;
-  return await sql(query, [id]);
+  const sql = `SELECT * FROM ROL Where ID_ROL=?`;
+  return await query(sql, [id]);
 };
 
 const save = async (rol) => {
   if (
-    !rol.rolname 
+    !rol.rol_name 
 
   )
     throw Error("Missing field");
-  const query = `INSERT INTO ROL (ROLNAME) VALUES (?)`;
-  const { insertedId } = await sql(query, [
-    rol.rolname
+  const sql = `INSERT INTO ROL (ROL_NAME) VALUES (?)`;
+  const { insertedId } = await query(sql, [
+    rol.rol_name
   ]);
   return { ...rol, id:insertedId}
 };
 
 const update = async (rol, id) => {
-  if (!id) throw Error('Missing fields');
+  console.log(rol.rol_name);
   if (Number.isNaN(id)) throw Error("Wrong Type")
   if (
-    !rol.rolname
+    !rol.rol_name
 ) throw Error('Missing fields');
-  const query = `UPDATE ROL SET ROLNAME=? WHERE ID_ROL=?`;
-  await sql(query,[
-    rol.rolname,
+  const sql = `UPDATE ROL SET ROL_NAME=? WHERE ID_ROL=?`;
+  await query(sql,[
+    rol.rol_name,
     id
   ]);
   return {...rol,id:id}
 }
 
 const remove = async(id)=>{
-  if(!id) throw Error('Missing fields');
   if(Number.isNaN(id)) throw Error("Wrong Type");
-  const query = 'DELETE FROM ROL WHERE ID_ROL=?';
-  await sql(query,[id]);
+  const sql = 'DELETE FROM ROL WHERE ID_ROL=?';
+  await query(sql,[id]);
   return {idDeleted:id} 
 }
 
