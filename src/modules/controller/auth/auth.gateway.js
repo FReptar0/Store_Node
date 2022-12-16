@@ -1,6 +1,7 @@
 const { query } = require('../../../utils/MySQL');
 const { generateToken } = require('../../../config/jwt');
 const { validatePassword } = require('../../../utils/functions');
+const e = require('express');
 
 const login = async (user) => {
     const { email, password } = user;
@@ -10,8 +11,10 @@ const login = async (user) => {
     const sql = `SELECT * FROM clients WHERE email = ?`;
     const existsUser = await query(sql, [email]);
     console.log(existsUser[0]);
-    console.log(await validatePassword(password, existsUser[0].password));
-    if (await validatePassword(password, existsUser[0].password))
+    console.log("password: ", password);
+    console.log("existsUser[0].password: ", existsUser[0].PASSWORD);
+    console.log(await validatePassword(password, existsUser[0].PASSWORD));
+    if (await validatePassword(password, existsUser[0].PASSWORD))
         return generateToken({
             id: existsUser[0].id,
             email: email,

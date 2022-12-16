@@ -6,6 +6,7 @@ const signIn = async (req, res = Response) => {
     try {
         const { email, password } = req.body;
         const token = await login({ email, password });
+        console.log("Token: "+token);
         res.status(200).json({ token });
     } catch (error) {
         console.log(error);
