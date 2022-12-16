@@ -30,22 +30,22 @@
                 }).then(function (response) {
                     if (response.ok) {
                         Swal.fire({
-                        title: 'Producto eliminado exitosamente',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        showCloseButton: true,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey: false,
-                        stopKeydownPropagation: false,
-                    }).then((result) => {
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            window.location.href = "./indexProducts.html";
-                        }
-                    })
-                        
+                            title: 'Producto eliminado exitosamente',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "./indexProducts.html";
+                            }
+                        })
+
                     } else {
                         alert("Error al eliminar el registro");
                     }

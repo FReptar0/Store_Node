@@ -29,8 +29,22 @@
                     }
                 }).then(function (response) {
                     if (response.ok) {
-                        alert("Registro eliminado");
-                        window.location.href = "./indexOrders.html";
+                        Swal.fire({
+                            title: 'Ordden eliminada exitosamente',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "./indexOrders.html";                            }
+                        })
+                        
                     } else {
                         alert("Error al eliminar el registro");
                     }
@@ -82,5 +96,6 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 <script src="./js/orders/orders.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

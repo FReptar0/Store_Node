@@ -2,7 +2,7 @@ const { query } = require ('../../../utils/mysql');
 const { hashPassword } = require ('../../../utils/functions')
 
 const findAll = async() => {
-    const sql = `SELECT * FROM personal`
+    const sql = `SELECT * FROM PERSONAL`
     return await query(sql, [])
 }
 
@@ -38,7 +38,7 @@ const update = async (personal, id) => {
     if (!personal.FULLNAME ||
         !personal.EMAIL ||
         !personal.PASSWORD) throw Error('Algunos parametros no se han ingresado')
-    const sql = `UPDATE PERSONAL SET  FULLNAME=?, EMAIL=?, PASSWORD=? WHERE id=?`
+    const sql = `UPDATE PERSONAL SET FULLNAME=?, EMAIL=?, PASSWORD=? WHERE ID_PERSONAL=?`
     await query(sql, [
         personal.FULLNAME,
         personal.EMAIL,
@@ -50,7 +50,7 @@ const update = async (personal, id) => {
 const remove = async (id) => {
     if (!id) throw Error ('No se ha ingresado el id')
     if (Number.isNaN(id)) throw Error('No se han ingresado todos los parametros')
-    const sql = `DELETE FROM PERSONAL WHERE id=?`
+    const sql = `DELETE FROM PERSONAL WHERE ID_PERSONAL=?`
     await query(sql, [id])
     return { idDeleted:id }
 }
