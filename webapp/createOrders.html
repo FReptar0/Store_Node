@@ -66,7 +66,7 @@
                                             <div class="col">
                                                 <div class="col-12 text-end">
                                                     <button id="enviar" class="btn btn-success btn-sm mt-3">
-                                                        Actualizar
+                                                        Registrar
                                                     </button>
                                                     <a href="indexOrders.html" type="button"
                                                         class="btn btn-danger btn-sm mt-3">Cancelar</a>
@@ -132,8 +132,22 @@
             }).then(res => res.json())
                 .then(function (response) {
                     console.log('Success:', response);
-                    alert("Orden insertada correctamente");
-                    window.location.href = "indexOrders.html";
+                    Swal.fire({
+                        title: 'Orden creada exitosamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexOrders.html";
+                        }
+                    })
                 })
                 .catch(function (error) {
                     console.log('Error:', error);
@@ -149,5 +163,6 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

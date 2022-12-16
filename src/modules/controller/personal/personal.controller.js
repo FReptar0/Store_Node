@@ -5,11 +5,11 @@ const getAll = async (req, res = Response) => {
     try {
         const personal = await findAll();
         res.status(200).json(personal);
-        res.json(personal);
+        // res.json(personal);
     } catch (error) {
         console.log(error);
         const message = "Error al obtener los datos"
-        res.status(400).json({ message });
+        res.status(400).json({ message })
     }
 }
 
