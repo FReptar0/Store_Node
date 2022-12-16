@@ -4,7 +4,7 @@ window.onload = function () {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            addForm(data);
+            // addForm(data);
             idPersonal = data[0].ID_PERSONAL;
         })
         .catch((error) => {

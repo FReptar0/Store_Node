@@ -39,6 +39,7 @@ const save = async (provider) => {
 };
 
 const update = async (provider, id) => {
+  console.log(id);
   if (!id) throw Error('Missing fields');
   if (Number.isNaN(id)) throw Error("Wrong Type")
   if (
@@ -52,6 +53,7 @@ const update = async (provider, id) => {
     !provider.PHONE
 ) throw Error('Missing fields');
   const sql = `UPDATE PROVIDERS SET FULLNAME=?, EMAIL=?,ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?,PHONE=? WHERE ID_PROVIDER=?;`;
+  console.log("id",id);
   await query(sql,[
     provider.FULLNAME,
     provider.EMAIL,
