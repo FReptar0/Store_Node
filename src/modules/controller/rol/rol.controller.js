@@ -28,8 +28,8 @@ const getById= async(req,res=Response)=>{
 const insert =async(req,res=response)=>{
   try{
     
-    const {rol_name}=req.body;
-    const rol = await save({rol_name});
+    const {ROL_NAME}=req.body;
+    const rol = await save({ROL_NAME});
     res.status(200).json(rol);
   }catch(error){
     console.log(error)
@@ -41,9 +41,9 @@ const insert =async(req,res=response)=>{
 const actualize =async(req,res=response)=>{
   try{
     const {id}=req.params;
-    const{rol_name}= req.body;
+    const{ROL_NAME}= req.body;
     const rol = await update({
-        rol_name
+      ROL_NAME
     },id);
     res.status(200).json(rol);
   }catch(error){
