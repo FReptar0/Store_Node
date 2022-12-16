@@ -3,7 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 /* const { personalRouter, userRouter } = require('../modules/controller/routes')
  */
-const { orderRouter, productRouter, storeRouter, providersRouter, rolRouter } = require('../modules/controller/routes');
+const { orderRouter, productRouter, storeRouter, providersRouter, rolRouter, personalRouter, clientRouter } = require('../modules/controller/routes');
 const app = express();
 
 app.set("PORT", process.env.PORT || 3000);
@@ -23,5 +23,7 @@ app.use('/products', productRouter);
 app.use('/stores', storeRouter);
 app.use('/providers',providersRouter);
 app.use('/roles', rolRouter);
+app.use('/personal', personalRouter);
+app.use('/clients', clientRouter);
 
 module.exports = { app }
