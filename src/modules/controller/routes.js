@@ -4,12 +4,15 @@ const { storeRouter } = require('./stores/stores.controller');
 const { productRouter } = require('./products/products.controller');
 const { providersRouter } = require('./providers/providers.controller');
 const { rolRouter } = require('./rol/rol.controller');
-// const { } = require('./rol/rol.controller')
+const { personalRouter } = require('./personal/personal.controller');
+const { clientRouter } = require('./client/client.controller');
 
 module.exports = {
     orderRouter,
     storeRouter,
     productRouter,
     providersRouter,
-    rolRouter
+    rolRouter,
+    personalRouter,
+    clientRouter
 }
