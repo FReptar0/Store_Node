@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar rol</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"
+        integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <iframe src="./template/navbar.html"
+        onload="this.before((this.contentDocument.body || this.contentDocument).children[0]); this.remove()"></iframe>
+    <script src="./js/roles/createRoles.js"></script>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">Registrar rol</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <form name="registerRol" id="registerRol" class="needs-validation" novalidate>
+                                    <input type="hidden" name="ID_ROL" id="hidden">
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="ROL_NAME" class="form-label">Nombre del rol</label>
+                                                <input type="text" class="form-control" id="ROL_NAME" name="ROL_NAME" required>
+                                                <div class="invalid-feedback">Campo obligatorio.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col-12 text-end">
+                                                    <button id="enviar" class="btn btn-success btn-sm mt-3" type="submit" >Registrar</button>
+                                                    <a href="indexRoles.html" type="button"
+                                                        class="btn btn-danger btn-sm mt-3">Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Evitar que se envie el formulario
+        document.getElementById('registerRol').addEventListener('submit', function (e) {
+            e.preventDefault();
+        });
+
+        // Validar formulario
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        // convertir el formulario a un json
+        function formToJson(form) {
+            var array = jQuery(form).serializeArray();
+            var json = {};
+            jQuery.each(array, function () {
+                json[this.name] = this.value || '';
+            });
+            return json;
+        }
+
+        // fetch para enviar el json
+
+        document.getElementById('enviar').addEventListener('click', function () {
+            var form = document.getElementById('registerRol');
+            var json = formToJson(form);
+            console.log(json);
+            fetch('http://localhost:3000/roles', {
+                method: 'POST',
+                body: JSON.stringify(json),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                Swal.fire({
+                    title: 'Rol creado exitosamente',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    stopKeydownPropagation: false,
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.href = "indexRoles.html";
+                    }
+                })
+
+            }).then(function (data) {
+                console.log(data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        });
+    </script>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+<script src="./js/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>

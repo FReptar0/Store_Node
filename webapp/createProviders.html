@@ -29,18 +29,21 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <form name="registerProviders" id="registerProviders" class="needs-validation" novalidate>
+                                <form name="registerProviders" id="registerProviders" class="needs-validation"
+                                    novalidate>
                                     <input type="hidden" name="ID_PROVIDER" id="hidden">
                                     <div class="form-group mb-3">
                                         <div class="row">
                                             <div class="col">
                                                 <label for="FULLANME" class="form-label">Nombre completo</label>
-                                                <input type="text" class="form-control" id="FULLANME" name="FULLNAME" required>
+                                                <input type="text" class="form-control" id="FULLANME" name="FULLNAME"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                             <div class="col">
                                                 <label for="EMAIL" class="form-label">Correo electrónico</label>
-                                                <input type="text" class="form-control" id="EMAIL" name="EMAIL" required>
+                                                <input type="text" class="form-control" id="EMAIL" name="EMAIL"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                         </div>
@@ -49,7 +52,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="ADDRESS" class="form-label">Direccion</label>
-                                                <input type="text" class="form-control" id="ADDRESS" name="ADDRESS" required>
+                                                <input type="text" class="form-control" id="ADDRESS" name="ADDRESS"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                             <div class="col">
@@ -63,12 +67,14 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="STATE" class="form-label">Estado</label>
-                                                <input type="text" class="form-control" id="STATE" name="STATE" required>
+                                                <input type="text" class="form-control" id="STATE" name="STATE"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                             <div class="col">
                                                 <label for="ZIPCODE" class="form-label">Código postal</label>
-                                                <input type="text" class="form-control" id="ZIPCODE" name="ZIPCODE" required>
+                                                <input type="text" class="form-control" id="ZIPCODE" name="ZIPCODE"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                         </div>
@@ -77,12 +83,14 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="COUNTRY" class="form-label">País</label>
-                                                <input type="text" class="form-control" id="COUNTRY" name="COUNTRY" required>
+                                                <input type="text" class="form-control" id="COUNTRY" name="COUNTRY"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                             <div class="col">
                                                 <label for="PHONE" class="form-label">Número de teléfono</label>
-                                                <input type="text" class="form-control" id="PHONE" name="PHONE" required>
+                                                <input type="text" class="form-control" id="PHONE" name="PHONE"
+                                                    required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                         </div>
@@ -91,7 +99,8 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="col-12 text-end">
-                                                    <button id="enviar" class="btn btn-success btn-sm mt-3" type="submit" >Registrar</button>
+                                                    <button id="enviar" class="btn btn-success btn-sm mt-3"
+                                                        type="submit">Registrar</button>
                                                     <a href="indexProviders.html" type="button"
                                                         class="btn btn-danger btn-sm mt-3">Cancelar</a>
                                                 </div>
@@ -152,8 +161,25 @@
                     'Content-Type': 'application/json'
                 }
             }).then(function (response) {
-                alert("Proveedor registrada correctamente");
-                window.location.href = "indexProviders.html";
+
+                Swal.fire({
+                    title: 'Proveedor creado exitosamente',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    stopKeydownPropagation: false,
+                }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.href = "indexProviders.html";
+                    }
+                })
+
+                
             }).then(function (data) {
                 console.log(data);
             }).catch(function (error) {
@@ -169,5 +195,7 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>

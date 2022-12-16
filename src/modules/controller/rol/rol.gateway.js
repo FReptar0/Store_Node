@@ -15,26 +15,26 @@ const findById = async (id) => {
 
 const save = async (rol) => {
   if (
-    !rol.rol_name 
+    !rol.ROL_NAME 
 
   )
     throw Error("Missing field");
   const sql = `INSERT INTO ROL (ROL_NAME) VALUES (?)`;
   const { insertedId } = await query(sql, [
-    rol.rol_name
+    rol.ROL_NAME
   ]);
   return { ...rol}
 };
 
 const update = async (rol, id) => {
-  console.log(rol.rol_name);
+  console.log(rol.ROL_NAME);
   if (Number.isNaN(id)) throw Error("Wrong Type")
   if (
-    !rol.rol_name
+    !rol.ROL_NAME
 ) throw Error('Missing fields');
   const sql = `UPDATE ROL SET ROL_NAME=? WHERE ID_ROL=?`;
   await query(sql,[
-    rol.rol_name,
+    rol.ROL_NAME,
     id
   ]);
   return {...rol,id:id}

@@ -164,8 +164,23 @@
                 })
                 .then(function (response) {
                     console.log('Success:', response);
-                    alert("Tienda actualizada");
-                    window.location.href = "indexStores.html";
+                    Swal.fire({
+                        title: 'Tienda actualizada exitosamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexStores.html";
+                        }
+                    })
+                    
                 });
         });
     </script>
@@ -175,5 +190,5 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

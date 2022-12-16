@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-6">Actualizar tienda</div>
+                            <div class="col-6">Crear producto</div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -71,21 +71,21 @@
                                                 </select>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
-                                            
+
                                         </div>
-                                    <div class="form-group mb-3">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="col-12 text-end">
-                                                    <button id="enviar" class="btn btn-success btn-sm mt-3">
-                                                        Actualizar
-                                                    </button>
-                                                    <a href="indexProducts.html" type="button"
-                                                        class="btn btn-danger btn-sm mt-3">Cancelar</a>
+                                        <div class="form-group mb-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="col-12 text-end">
+                                                        <button id="enviar" class="btn btn-success btn-sm mt-3">
+                                                            Registrar
+                                                        </button>
+                                                        <a href="indexProducts.html" type="button"
+                                                            class="btn btn-danger btn-sm mt-3">Cancelar</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -148,8 +148,24 @@
                 })
                 .then(function (response) {
                     console.log('Success:', response);
-                    alert("Producto insertado correctamente");
-                    window.location.href = "indexProducts.html";
+
+                    Swal.fire({
+                        title: 'Producto creado exitosamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexProducts.html";
+                        }
+                    })
+
                 });
         });
 
@@ -161,5 +177,6 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
