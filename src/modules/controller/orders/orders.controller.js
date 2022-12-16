@@ -1,11 +1,11 @@
-const { Response, Router, application } = require('express');
+const { Response, Router} = require('express');
 // TODO: Crear las funciones para el CRUD de la tabla orders
 const { findAll, findOne, save, update, remove } = require('./orders.gateway');
 
 const getAll = async(req, res=Response) => {
     try{
         const orders = await findAll();
-        res.status(200).json({orders});
+        res.status(200).json(orders);
     }catch(error){
         console.log(error);
         res.status(400).json({error:'Error to get all'});
