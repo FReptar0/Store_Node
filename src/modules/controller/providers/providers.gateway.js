@@ -14,53 +14,53 @@ const findById = async (id) => {
 
 const save = async (provider) => {
   if (
-    !provider.fullname ||
-    !provider.email ||
-    !provider.address ||
-    !provider.city ||
-    !provider.state ||
-    !provider.zipcode ||
-    !provider.country ||
-    !provider.phone
+    !provider.FULLNAME ||
+    !provider.EMAIL ||
+    !provider.ADDRESS ||
+    !provider.CITY ||
+    !provider.STATE ||
+    !provider.ZIPCODE ||
+    !provider.COUNTRY ||
+    !provider.PHONE
   )
     throw Error("Missing field");
   const sql = `INSERT INTO PROVIDERS (FULLNAME,EMAIL,ADDRESS,CITY,STATE,ZIPCODE,COUNTRY,PHONE) VALUES (?,?,?,?,?,?,?,?);`;
   const { insertedId } = await query(sql, [
-    provider.fullname,
-    provider.email,
-    provider.address,
-    provider.city,
-    provider.state,
-    provider.zipcode,
-    provider.country,
-    provider.phone
+    provider.FULLNAME,
+    provider.EMAIL,
+    provider.ADDRESS,
+    provider.CITY,
+    provider.STATE,
+    provider.ZIPCODE,
+    provider.COUNTRY,
+    provider.PHONE
   ]);
-  return { ...provider}
+  return { ...provider,id: insertedId}
 };
 
 const update = async (provider, id) => {
   if (!id) throw Error('Missing fields');
   if (Number.isNaN(id)) throw Error("Wrong Type")
   if (
-    !provider.fullname ||
-    !provider.email ||
-    !provider.address || 
-    !provider.city ||
-    !provider.state || 
-    !provider.zipcode ||
-    !provider.country ||
-    !provider.phone
+    !provider.FULLNAME ||
+    !provider.EMAIL ||
+    !provider.ADDRESS || 
+    !provider.CITY ||
+    !provider.STATE || 
+    !provider.ZIPCODE ||
+    !provider.COUNTRY ||
+    !provider.PHONE
 ) throw Error('Missing fields');
   const sql = `UPDATE PROVIDERS SET FULLNAME=?, EMAIL=?,ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?,PHONE=? WHERE ID_PROVIDER=?;`;
   await query(sql,[
-    provider.fullname,
-    provider.email,
-    provider.address,
-    provider.city,
-    provider.state,
-    provider.zipcode,
-    provider.country,
-    provider.phone,
+    provider.FULLNAME,
+    provider.EMAIL,
+    provider.ADDRESS,
+    provider.CITY,
+    provider.STATE,
+    provider.ZIPCODE,
+    provider.COUNTRY,
+    provider.PHONE,
     id
   ]);
   return {...provider,id:id}

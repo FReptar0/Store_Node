@@ -25,22 +25,21 @@ const getById = async (req, res = Response) => {
 
 const insert = async (req, res = Response) => {
   try {
-
-    const { fullname, email, address, city, state, zipcode, country, phone } = req.body;
-    const provider = await save({ fullname, email, address, city, state, zipcode, country, phone });
-    res.status(200).json(provider);
+      const { FULLNAME, EMAIL, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY,PHONE } = req.body;
+      const provider = await save({ FULLNAME, EMAIL, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY,PHONE });
+      res.status(200).json(provider);
   } catch (error) {
-    console.log(error)
-    res.status(400).json({ error:'error' });
+      console.log(error);
+      res.status(400).json({ error: 'Error to post one' });
   }
 }
 
 const actualize = async (req, res = Response) => {
   try {
     const { id } = req.params;
-    const { fullname, email, address, city, state, zipcode, country, phone } = req.body;
+    const { FULLNAME, EMAIL, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE  } = req.body;
     const provider = await update({
-      fullname, email, address, city, state, zipcode, country, phone
+      FULLNAME, EMAIL, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE 
     }, id);
     res.status(200).json(provider);
   } catch (error) {
@@ -73,6 +72,5 @@ providersRouter.delete('/:id',eliminate);
 module.exports = {
   providersRouter
 }
-
 
 
