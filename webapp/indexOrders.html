@@ -42,11 +42,28 @@
                             stopKeydownPropagation: false,
                         }).then((result) => {
                             if (result.dismiss === Swal.DismissReason.timer) {
-                                window.location.href = "./indexOrders.html";                            }
+                                window.location.href = "./indexOrders.html";
+                            }
                         })
-                        
+
                     } else {
-                        alert("Error al eliminar el registro");
+                        console.log('Error:', error);
+                        Swal.fire({
+                            title: 'Error al eliminar la orden',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "indexOrders.html";
+                            }
+                        })
                     }
                 });
             }

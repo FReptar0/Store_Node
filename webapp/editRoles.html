@@ -112,7 +112,23 @@
             }).then(res => res.json())
                 .catch(function (error) {
                     console.log('Error:', error);
-                    alert("Error al actualizar al rol");
+                    console.log('Error:', error);
+                    Swal.fire({
+                        title: 'Error al actualizar el rol',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexRoles.html";
+                        }
+                    })
                 })
                 .then(function (response) {
                     console.log('Success:', response);
@@ -121,7 +137,7 @@
                         icon: 'success',
                         showConfirmButton: false,
                         showCloseButton: true,
-                        timer: 3000,
+                        timer: 2000,
                         timerProgressBar: true,
                         allowOutsideClick: false,
                         allowEscapeKey: false,

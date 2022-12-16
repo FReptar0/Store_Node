@@ -47,7 +47,22 @@
                         })
 
                     } else {
-                        alert("Error al eliminar el registro");
+                        Swal.fire({
+                            title: 'Error al eliminar el registro',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "indexRoles.html";
+                            }
+                        })
                     }
                 });
             }

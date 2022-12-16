@@ -29,24 +29,39 @@
                     }
                 }).then(function (response) {
                     if (response.ok) {
-                Swal.fire({
-                    title: 'Proveedor eliminado exitosamente',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    stopKeydownPropagation: false,
-                }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        window.location.href = "indexProviders.html";
-                    }
-                })
+                        Swal.fire({
+                            title: 'Proveedor eliminado exitosamente',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "indexProviders.html";
+                            }
+                        })
                     } else {
-                        alert("Error al eliminar el registro");
+                        Swal.fire({
+                            title: 'Error al eliminar el registro',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                            stopKeydownPropagation: false,
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                window.location.href = "indexProviders.html";
+                            }
+                        })
                     }
                 });
             }
@@ -66,7 +81,8 @@
                                 Providers
                             </div>
                             <div class="col-6 text-end">
-                                <a href="./createProviders.html" class="btn btn-outline-success btn-sm">Registrar Proveedor</a>
+                                <a href="./createProviders.html" class="btn btn-outline-success btn-sm">Registrar
+                                    Proveedor</a>
                             </div>
                         </div>
                     </div>

@@ -160,7 +160,23 @@
             }).then(res => res.json())
                 .catch(function (error) {
                     console.log('Error:', error);
-                    alert("Error al actualizar la tienda");
+                    console.log('Error:', error);
+                    Swal.fire({
+                        title: 'Error al actualiza la tienda',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexStores.html";
+                        }
+                    })
                 })
                 .then(function (response) {
                     console.log('Success:', response);

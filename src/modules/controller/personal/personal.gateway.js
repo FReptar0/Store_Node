@@ -33,8 +33,9 @@ const save = async (personal) => {
 }
 
 const update = async (personal, id) => {
+    console.log(personal)
     if (!id) throw Error ('El id no ha sido ingresado')
-    if (Numer.isNaN(id)) throw Error('Solo se admiten numeros!')
+    if (Number.isNaN(id)) throw Error('Solo se admiten numeros!')
     if (!personal.FULLNAME ||
         !personal.EMAIL ||
         !personal.PASSWORD) throw Error('Algunos parametros no se han ingresado')
@@ -42,7 +43,8 @@ const update = async (personal, id) => {
     await query(sql, [
         personal.FULLNAME,
         personal.EMAIL,
-        personal.PASSWORD
+        personal.PASSWORD,
+        id
     ])
     return { id:id, personal }
 }

@@ -137,7 +137,7 @@
                         icon: 'success',
                         showConfirmButton: false,
                         showCloseButton: true,
-                        timer: 3000,
+                        timer: 2000,
                         timerProgressBar: true,
                         allowOutsideClick: false,
                         allowEscapeKey: false,
@@ -151,7 +151,22 @@
                 })
                 .catch(function (error) {
                     console.log('Error:', error);
-                    alert("Error al insertar la orden");
+                    Swal.fire({
+                        title: 'Error al crear la orden',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexOrders.html";
+                        }
+                    })
                 });
         });
 
