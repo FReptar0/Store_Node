@@ -6,6 +6,7 @@ const { providersRouter } = require('./providers/providers.controller');
 const { rolRouter } = require('./rol/rol.controller');
 const { personalRouter } = require('./personal/personal.controller');
 const { clientRouter } = require('./client/client.controller');
+const { authRouter } = require('./auth/auth.controller');
 
 module.exports = {
     orderRouter,
@@ -14,5 +15,6 @@ module.exports = {
     providersRouter,
     rolRouter,
     personalRouter,
-    clientRouter
+    clientRouter,
+    authRouter
 }
