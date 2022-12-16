@@ -38,11 +38,12 @@ const update = async (personal, id) => {
     if (!personal.FULLNAME ||
         !personal.EMAIL ||
         !personal.PASSWORD) throw Error('Algunos parametros no se han ingresado')
+    const hashedPassword = await hashPassword(personal.PASSWORD)
     const sql = `UPDATE PERSONAL SET  FULLNAME=?, EMAIL=?, PASSWORD=? WHERE id=?`
     await query(sql, [
         personal.FULLNAME,
         personal.EMAIL,
-        personal.PASSWORD
+        hashedPassword
     ])
     return { id:id, personal }
 }

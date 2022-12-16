@@ -1,5 +1,5 @@
 const { query } = require ('../../../utils/mysql');
-
+const { hashPassword } = require ('../../../utils/functions')
 const findAll = async () => {
     const sql = `SELECT * FROM CLIENTS`
     return await query (sql, [])
@@ -22,11 +22,12 @@ const save = async (client) => {
         !client.ZIPCODE ||
         !client.COUNTRY ||
         !client.PHONE) throw Error('Algunos parametros no se han ingresado')
+    const hashedPassword = await hashPassword(client.PASSWORD)
     const sql = `INSERT INTO CLIENTS (FULLNAME, EMAIL, PASSWORD, ADDRESS, CITY, STATE, ZIPCODE, COUNTRY, PHONE) VALUES (?,?,?,?,?,?,?,?,?)`
     const { insertId } = await query (sql, [
         client.FULLNAME,
         client.EMAIL,
-        !client.PASSWORD,
+        hashedPassword,
         client.ADDRESS,
         client.CITY,
         client.STATE,
@@ -34,6 +35,7 @@ const save = async (client) => {
         client.COUNTRY,
         client.PHONE
     ])
+    delete client.PASSWORD
     return { id:insertId, ...client }
 }
 
@@ -49,11 +51,12 @@ const update = async (client, id) => {
         !client.ZIPCODE ||
         !client.COUNTRY ||
         !client.PHONE) throw Error('Algunos parametros no se han ingresado')
+    const hashedPassword = await hashPassword(client.PASSWORD)
     const sql = `UPDATE CLIENTS SET FULLNAME=?, EMAIL=?, PASSWORD=?, ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?, PHONE=?`
     await query(sql, [
         client.FULLNAME,
         client.EMAIL,
-        !client.PASSWORD,
+        hashedPassword,
         client.ADDRESS,
         client.CITY,
         client.STATE,
