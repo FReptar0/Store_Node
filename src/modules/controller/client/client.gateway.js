@@ -52,7 +52,7 @@ const update = async (client, id) => {
         !client.COUNTRY ||
         !client.PHONE) throw Error('Algunos parametros no se han ingresado')
     const hashedPassword = await hashPassword(client.PASSWORD)
-    const sql = `UPDATE CLIENTS SET FULLNAME=?, EMAIL=?, PASSWORD=?, ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?, PHONE=?`
+    const sql = `UPDATE CLIENTS SET FULLNAME=?, EMAIL=?, PASSWORD=?, ADDRESS=?, CITY=?, STATE=?, ZIPCODE=?, COUNTRY=?, PHONE=? WHERE ID_CLIENT=?`
     await query(sql, [
         client.FULLNAME,
         client.EMAIL,
@@ -62,8 +62,10 @@ const update = async (client, id) => {
         client.STATE,
         client.ZIPCODE,
         client.COUNTRY,
-        client.PHONE
+        client.PHONE,
+        id
     ])
+    delete client.PASSWORD
     return { id:id, client}
 }
 

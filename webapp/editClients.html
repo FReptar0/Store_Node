@@ -16,7 +16,7 @@
 <body>
     <iframe src="./template/navbar.html"
         onload="this.before((this.contentDocument.body || this.contentDocument).children[0]); this.remove()"></iframe>
-    <script src="./js/clients/editclients.js"></script>
+    <script src="./js/client/editClients.js"></script>
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
@@ -30,13 +30,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <form name="registerClient" id="registerClient" class="needs-validation" novalidate>
-                                    <input type="hidden" name="ID_CLIENT" id="hidden">
+                                    <input type="hidden" name="ID_CLIENT" id="HIDDEN" value="">
                                     <div class="form-group mb-3">
                                         <div class="row">
                                             <div class="col">
-                                                <label for="FULLANME" class="form-label">Nombre completo</label>
-                                                <input type="text" class="form-control" id="FULLANME" name="FULLNAME"
-                                                    required>
+                                                <label for="FULLNAME" class="form-label">Nombre completo</label>
+                                                <input type="text" class="form-control" id="FULLNAME" name="FULLNAME"
+                                                    value="" required>
                                                 <div class="invalid-feedback">Campo obligatorio.</div>
                                             </div>
                                             <div class="col">
@@ -103,7 +103,7 @@
                                                     <button id="enviar" class="btn btn-success btn-sm">
                                                         Actualizar
                                                     </button>
-                                                    <a href="indexProviders.html" type="button"
+                                                    <a href="indexClient.html" type="button"
                                                         class="btn btn-danger btn-sm">Cancelar</a>
                                                 </div>
                                             </div>
@@ -150,15 +150,14 @@
             return json;
         }
 
-        // Fetch para actualizar
+        // Fetche para actualizar el cliente
         document.getElementById('enviar').addEventListener('click', function () {
             var form = document.getElementById('registerClient');
             var data = formToJson(form);
             // quitar el campo de id
-            delete data.ID_CLIENT;
+            var id = document.getElementById('HIDDEN').value;
             console.log(data);
-            var id = document.getElementById('hidden').value;
-            fetch('http://localhost:3000/providers/' + id, {
+            fetch('http://localhost:3000/clients/' + id, {
                 method: 'PUT',
                 body: JSON.stringify(data),
                 headers: {
@@ -167,26 +166,27 @@
             }).then(res => res.json())
                 .catch(function (error) {
                     console.log('Error:', error);
-                    alert("Error al actualizar al cliente");
+                    alert("Error al actualizar el cliente");
                 })
                 .then(function (response) {
                     console.log('Success:', response);
                     Swal.fire({
-                    title: 'cliente actualizado exitosamente',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    showCloseButton: true,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
-                    stopKeydownPropagation: false,
-                }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        window.location.href = "indexProviders.html";
-                    }
-                })
+                        title: 'Cliente actualizado exitosamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            window.location.href = "indexClient.html";
+                        }
+                    })
+
                 });
         });
     </script>
